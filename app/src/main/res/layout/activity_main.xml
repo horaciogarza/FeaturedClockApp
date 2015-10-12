@@ -2,81 +2,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#1976D2"
+
+
     tools:context=".MainActivity"
     android:orientation="vertical"
+    android:theme="@style/AppTheme"
+    android:background="#FFFFFF"
 
+    android:id="@+id/activityMain"
+    >
 
-    android:id="@+id/activityMain">
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Viernes 28 de Noviembre de 2015"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-
-        android:background="#E0E0E0"
-        android:id="@+id/todaysDay"
-        android:autoText="false"
-        />
-
-
-    <DigitalClock
-        android:id="@+id/mainActivityClock"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily=""
-        android:textColor="#FFFFFF"
-        android:textSize="100sp"
-        android:layout_below="@+id/todaysDay"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="95dp" />
-
-    <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:textColor="#3469aa"
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+        android:textSize="20sp"
+        android:id="@+id/date"
+         />
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="#1565C0"
-                android:textColor="#FFFFFF"
-                android:text="A"
-                android:id="@+id/button2" />
+    <TextClock
+        android:id="@+id/mainActivityClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="D"
-                android:id="@+id/button3" />
-        </TableRow>
+        android:textColor="#3d8ad8"
+        android:textSize="70sp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/date"
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="B"
-                android:id="@+id/button4" />
+        />
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="C"
-                android:id="@+id/button" />
-        </TableRow>
-    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttons"
+        android:layout_alignParentBottom="true"
+
+
+
+        android:orientation="horizontal"
+        android:weightSum="4"
+       >
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme"
+            android:textColor="#FFFFFF"
+            android:text="\uE802"
+            android:background="#2196F3"
+            android:id="@+id/stopwatch"
+            android:layout_above="@+id/alarm"
+            android:layout_weight="1"
+
+            />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="\uE80D"
+            android:background="#2196F3"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:id="@+id/timer"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/stopwatch"
+            android:focusable="false" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="\uE842"
+            android:background="#2196F3"
+            android:textColor="#FFFFFF"
+            android:id="@+id/worldClock"
+            android:layout_weight="1"
+
+
+            android:layout_below="@+id/stopwatch"
+            android:layout_toStartOf="@+id/alarm" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="\uE800"
+            android:background="#2196F3"
+            android:textColor="#FFFFFF"
+            android:id="@+id/alarm"
+            android:layout_below="@+id/timer"
+            android:layout_toEndOf="@+id/stopwatch"
+            android:layout_weight="1" />
+    </LinearLayout>
 
 
 </RelativeLayout>
