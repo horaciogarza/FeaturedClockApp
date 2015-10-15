@@ -3,4 +3,15 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="title_activity_stopwatch">Stopwatch</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+
+    <!--Fontello -->
+
+    <string name="play_button">\ue837</string>
+    <string name="stop_button">\ue838</string>
+    <string name="pause_button">\ue839</string>
 </resources>

@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Switch;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /// @author HoracioGarza
 
@@ -54,18 +58,31 @@ public class MainActivity extends Activity {
          */
                 TextView date = (TextView) findViewById(R.id.date);
 
+        /**
+         * The <b>main_clock</b> represents the Text Clock in the main_activity
+         */
+
+        TextClock main_clock = (TextClock) findViewById(R.id.mainActivityClock);
+
+
         //Setting
         stopwatch.setTypeface(fontello_icon_font);
         alarm.setTypeface(fontello_icon_font);
         timer.setTypeface(fontello_icon_font);
         worldclock.setTypeface(fontello_icon_font);
         date.setTypeface(roboto_thin);
+        main_clock.setTypeface(roboto_thin);
 
 
 
-        Calendar calendar = Calendar.getInstance();
 
-        date.setText(getTodaysDate(calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR)));
+       Calendar calendar = Calendar.getInstance();
+
+        date.setText(getTodaysDate(calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR)) + calendar.getTimeZone());
+
+
+        DateFormat dateFormat = new SimpleDateFormat("zzzz");
+
 
 
 
