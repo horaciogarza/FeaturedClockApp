@@ -2,13 +2,23 @@ package com.example.hgx95.hci_project;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextClock;
 import android.widget.TextView;
+
+import com.example.hgx95.hci_project.util.CheckBackground;
 
 import java.lang.reflect.Type;
 import java.text.DateFormat;
@@ -19,7 +29,7 @@ import java.util.Date;
 /// @author HoracioGarza
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements CheckBackground {
 
 
 
@@ -27,70 +37,92 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /**
-         * The <b>stopwatch</b> variable represents the button that sends you to the Stop Watch activity
-         */
-        TextView stopwatch=(TextView)findViewById(R.id.stopwatch);
-        /**
-         * The <b>timer</b> variable represents the button that sends you to the Timer activity
-         */
 
-        TextView timer = (TextView) findViewById(R.id.timer);
 
-        /**
-         * The <b>alarm</b> variable represents the button that sends you to the Alarm activity
-         */
-        TextView alarm = (TextView) findViewById(R.id.alarm);
 
-        /**
-         * The <b>worldclock</b> variable represents the button that sends you to the World Clock activity
-         */
-        TextView worldclock = (TextView) findViewById(R.id.worldClock);
 
-        /**
-         * The <b>fontello_icon_font</b> snd the <b>roboto</b>andvariable represents the custom font, customized in <i>fontello.com</i>
-         */
+        Calendar calendar = Calendar.getInstance();
+
+
         Typeface fontello_icon_font= Typeface.createFromAsset(getAssets(), "fonts/fontello.ttf");
         Typeface roboto_thin = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
 
-        /**
-         * The <b>date</b> variable represents the date TextView in the principal Activity (MainActivity)
-         */
-                TextView date = (TextView) findViewById(R.id.date);
+        Typeface fontello2_icon_font = Typeface.createFromAsset(getAssets(), "fonts/fontello2.ttf");
 
-        /**
-         * The <b>main_clock</b> represents the Text Clock in the main_activity
-         */
 
         TextClock main_clock = (TextClock) findViewById(R.id.mainActivityClock);
+        TextView date = (TextView) findViewById(R.id.date);
+        TextView stopwatch_e = (TextView)findViewById(R.id.stopwatch);
+        TextView timer_e = (TextView) findViewById(R.id.timer);
+        TextView calendar_e = (TextView) findViewById(R.id.calendarText);
+        TextView world_e = (TextView) findViewById(R.id.world_clock);
 
+        stopwatch_e.setOnClickListener(stopwatch);
+        timer_e.setOnClickListener(timer);
+        calendar_e.setOnClickListener(calendar2);
+        world_e.setOnClickListener(world);
 
         //Setting
-        stopwatch.setTypeface(fontello_icon_font);
-        alarm.setTypeface(fontello_icon_font);
-        timer.setTypeface(fontello_icon_font);
-        worldclock.setTypeface(fontello_icon_font);
+        stopwatch_e.setTypeface(fontello_icon_font);
+        calendar_e.setTypeface(fontello2_icon_font);
+        timer_e.setTypeface(fontello2_icon_font);
+        world_e.setTypeface(fontello_icon_font);
+
+
+
         date.setTypeface(roboto_thin);
         main_clock.setTypeface(roboto_thin);
 
 
 
 
-       Calendar calendar = Calendar.getInstance();
-
-        date.setText(getTodaysDate(calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR)) + calendar.getTimeZone());
 
 
-        DateFormat dateFormat = new SimpleDateFormat("zzzz");
+        date.setText(getTodaysDate(calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.DAY_OF_MONTH),
+                calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR)));
 
-
-
-
-
+        checkHour();
 
 
 
     }
+
+
+
+    View.OnClickListener world = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            MainActivity.this.startActivity(new Intent(MainActivity.this, worldClockMap.class));
+        }
+    };
+    View.OnClickListener stopwatch = new View.OnClickListener() {
+        public void onClick(View v) {
+
+         MainActivity.this.startActivity(new Intent(MainActivity.this, Stopwatch.class));
+
+        }
+    };
+
+    View.OnClickListener timer = new View.OnClickListener() {
+        public void onClick(View v) {
+
+            MainActivity.this.startActivity(new Intent(MainActivity.this, Set.class));
+        }
+    };
+
+    View.OnClickListener calendar2 = new View.OnClickListener() {
+        public void onClick(View v) {
+
+            Intent intent = new Intent(MainActivity.this , Prueba.class);
+            startActivity(intent);
+
+        }
+    };
+
+
+
+
 
     /***
      * It returns the day of the week, the day of the Month, the month and the year as strings and it returns a complete date<br>
@@ -101,7 +133,7 @@ public class MainActivity extends Activity {
      * @param year
      * @return date
      */
-    private String getTodaysDate(int dayOfWeek, int dayOfMonth, int month, int year) {
+    String getTodaysDate(int dayOfWeek, int dayOfMonth, int month, int year) {
 
         String date="";
 
@@ -214,5 +246,37 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void checkHour() {
+
+
+            ImageView background = (ImageView) findViewById(R.id.imageView) ;
+            Calendar calendar = Calendar.getInstance();
+            if (calendar.get(Calendar.HOUR_OF_DAY) < 11 && calendar.get(Calendar.HOUR_OF_DAY) > 5){
+
+                background.setImageResource(R.drawable.mad);
+            }else {
+
+                if (calendar.get(Calendar.HOUR_OF_DAY) < 17 && calendar.get(Calendar.HOUR_OF_DAY) > 12) {
+                    background.setImageResource(R.drawable.day);
+                } else {
+                    if (calendar.get(Calendar.HOUR_OF_DAY) > 17 && calendar.get(Calendar.HOUR_OF_DAY) < 6) {
+                        background.setImageResource(R.drawable.afternoon);
+
+
+                        }else{
+                            background.setImageResource(R.drawable.night);
+                            TextView date = (TextView) findViewById(R.id.date);
+                            TextClock main_clock = (TextClock) findViewById(R.id.mainActivityClock);
+                            main_clock.setTextColor(getResources().getColor(R.color.white));
+                            date.setTextColor(getResources().getColor(R.color.white));
+
+
+                   }
+               }
+            }
+
     }
 }

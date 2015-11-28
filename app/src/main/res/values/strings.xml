@@ -14,4 +14,14 @@
     <string name="play_button">\ue837</string>
     <string name="stop_button">\ue838</string>
     <string name="pause_button">\ue839</string>
+    <string name="title_activity_timer">Timer</string>
+    <string name="timerSetTime">\ue804</string>
+    <string name="title_activity_set_time_timer">setTimeTimer</string>
+    <string name="title_activity_set">Set</string>
+    <string name="diplosoma">\ue83d</string>
+
+    <string name="title_activity_prueba">Calendar</string>
+    <string name="title_activity_world_clock_map">Map</string>
+    <string name="world_clock">\ue842</string>
+
 </resources>
